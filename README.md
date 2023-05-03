@@ -13,6 +13,14 @@ specific tutorial instances.
 More information about the Mochi project in general can be found at
 https://www.mcs.anl.gov/research/projects/mochi/ .
 
+# Mochi docker container
+
+The simplest way to create an execution environment for performing hands-on
+exercises is by creating a Docker container.  Please see the instructions
+for [creating a Mochi tutorial container](docker/README.md).
+
+# Events
+
 ## Developing Custom HPC Data Services Using Mochi (ISC 2023)
 
 - Sunday, May 21, 2023 2:00 PM to 6:00 PM (Europe/Berlin)

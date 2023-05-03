@@ -1,0 +1,50 @@
+FROM ubuntu
+
+ARG USERNAME=mochi
+
+# install as many dependency packages as we can from Ubuntu
+RUN apt-get update \
+ && apt-get -y upgrade \
+ && apt-get -y install gcc automake \
+ && apt-get -y install cmake libtool pkgconf \
+ && apt-get -y install git python3 bison fuse sudo vim curl \
+ && apt-get -y install libfuse-dev libssl-dev \
+ && apt-get -y install libfmt-dev libjson-c-dev mpich libcereal-dev \
+ && apt-get -y install nlohmann-json3-dev libspdlog-dev libtclap-dev
+
+# install sshd and modify configuration to allow easy ssh from host
+RUN apt-get -y install --no-install-recommends openssh-server
+COPY configs/auth.conf /etc/ssh/sshd_config.d/auth.conf
+COPY configs/ignore-host-key.conf /etc/ssh/ssh_config.d/ignore-host-key.conf
+
+# add a user, no password, with sudo privileges
+RUN useradd -m -s /bin/bash $USERNAME \
+ && echo "$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers.d/$USERNAME \
+ # delete passwd
+ && passwd -d $USERNAME
+
+# set up Spack
+# Note that we select a specific version (v0.19.2 in this case) to avoid
+# unexpected incompatibilities
+USER $USERNAME
+RUN cd \
+ && git clone -b v0.19.2 -c feature.manyFiles=true --depth 1 https://github.com/spack/spack.git \
+ && . spack/share/spack/setup-env.sh \
+ && spack bootstrap now \
+ && printf '%s\n' \
+    '. $HOME/spack/share/spack/setup-env.sh' \
+    >> .bashrc
+
+# add Mochi spack repository
+COPY configs/packages.yaml ~$USERNAME/.spack/packages.yaml
+RUN cd \
+ && git clone --depth 1 https://github.com/mochi-hpc/mochi-spack-packages.git \
+ && . spack/share/spack/setup-env.sh \
+ && spack repo add mochi-spack-packages
+
+# NOTE: we intentionally do not actually install any Mochi-specific
+# spack packages.  We save that step for the hands-on exercises
+
+# when the container starts, launch ssh service and sleep so that
+# container remains up for development
+CMD sudo service ssh restart && sleep infinity
