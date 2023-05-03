@@ -5,17 +5,12 @@ ARG USERNAME=mochi
 # install as many dependency packages as we can from Ubuntu
 RUN apt-get update \
  && apt-get -y upgrade \
- && apt-get -y install gcc automake \
- && apt-get -y install cmake libtool pkgconf \
- && apt-get -y install git python3 bison fuse sudo vim curl \
- && apt-get -y install libfuse-dev libssl-dev \
- && apt-get -y install libfmt-dev libjson-c-dev mpich libcereal-dev \
- && apt-get -y install nlohmann-json3-dev libspdlog-dev libtclap-dev
-
-# install sshd and modify configuration to allow easy ssh from host
-RUN apt-get -y install --no-install-recommends openssh-server
-COPY configs/auth.conf /etc/ssh/sshd_config.d/auth.conf
-COPY configs/ignore-host-key.conf /etc/ssh/ssh_config.d/ignore-host-key.conf
+ && apt-get -y install \
+ gcc automake cmake libtool pkgconf \
+ git python3 bison fuse sudo vim curl \
+ libfuse-dev libssl-dev \
+ libfmt-dev libjson-c-dev mpich \
+ nlohmann-json3-dev libspdlog-dev libtclap-dev
 
 # add a user, no password, with sudo privileges
 RUN useradd -m -s /bin/bash $USERNAME \
@@ -45,6 +40,8 @@ RUN cd \
 # NOTE: we intentionally do not actually install any Mochi-specific
 # spack packages.  We save that step for the hands-on exercises
 
-# when the container starts, launch ssh service and sleep so that
-# container remains up for development
-CMD sudo service ssh restart && sleep infinity
+WORKDIR /home/$USERNAME
+
+# sleep indefinitely when the container starts so that we can connect to it
+# with interactive sessions
+CMD sleep infinity
