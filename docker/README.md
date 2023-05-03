@@ -5,9 +5,7 @@ container called "mochi-tutorial" that can be used for hands on exercises
 and general Mochi experimentation.
 
 The image is based on Ubuntu and is pre-configured to include key system
-dependencies and a baseline Spack installation.  It also runs an ssh daemon
-that that allows access to an account with the user name "mochi" with no
-password.
+dependencies and a baseline Spack installation.
 
 ## Installing Docker
 
@@ -78,15 +76,11 @@ configured to run indefinitely in detached mode and allow login for the
 docker run -d -h mt1 --name mt1 mochi-tutorial
 ```
 
-Once the container is running, you can ssh into the mochi account on it
-using the following command:
+Once the container is running, you can open a shell on it using the
+following command.
 
 ```
-# for bash shell users (most common):
-ssh mochi@$(docker exec mt1 hostname -i)
-
-# for fish shell users:
-# ssh mochi@(docker exec mt1 hostname -i)
+docker exec -it mt1 /bin/bash
 ```
 
 **At this point, your Mochi tutorial container is ready, and you may proceed
@@ -107,6 +101,7 @@ Other helpful commands include:
 - `docker ps # view which containers are currently running`
 - `docker container ls -a # list all containers, whether running or not`
 - `docker images # list available container images`
+- `docker cp <file> mt1:<file> # copy files to the container`
 
 ## updating the mochi-tutorial image on Docker Hub
 
@@ -115,10 +110,10 @@ used to generate a new image and update it on Docker Hub.
 
 - create the image following the steps described in this README.md
 - log into Docker Hub with `docker login`
-- tag the image with a name matching the repository to upload to: `docker
-  tag mochi-tutorial carns/mochi-tutorial`
-- push the image with a tag name appended: `docker push
-  carns/mochi-tutorial:latest`
+- tag the image with a name matching the repository to upload to:
+  `docker tag mochi-tutorial carns/mochi-tutorial`
+- push the image with a tag name appended:
+  `docker push carns/mochi-tutorial:latest`
 - log back out of docker hub with `docker logout`
 
 ## Running multiple containers simultaneously
