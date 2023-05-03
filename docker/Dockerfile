@@ -36,7 +36,7 @@ RUN cd \
     >> .bashrc
 
 # add Mochi spack repository
-COPY configs/packages.yaml ~$USERNAME/.spack/packages.yaml
+COPY configs/packages.yaml /home/$USERNAME/.spack/packages.yaml
 RUN cd \
  && git clone --depth 1 https://github.com/mochi-hpc/mochi-spack-packages.git \
  && . spack/share/spack/setup-env.sh \
