@@ -18,9 +18,8 @@ RUN useradd -m -s /bin/bash $USERNAME \
  # delete passwd
  && passwd -d $USERNAME
 
-# set up Spack
-# Note that we select a specific version (v0.19.2 in this case) to avoid
-# unexpected incompatibilities
+# Set up Spack. Note that we select a specific version
+# (v0.19.2 in this case) to avoid unexpected incompatibilities
 USER $USERNAME
 RUN cd \
  && git clone -b v0.19.2 -c feature.manyFiles=true --depth 1 https://github.com/spack/spack.git \

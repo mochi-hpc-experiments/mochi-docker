@@ -107,7 +107,6 @@ Other helpful commands include:
 
 This section is for Mochi team members only.  The following steps can be
 used to generate a new image and update it on Docker Hub.
-
 - create the image following the steps described in this README.md
 - log into Docker Hub with `docker login`
 - tag the image with a name matching the repository to upload to:
@@ -115,6 +114,13 @@ used to generate a new image and update it on Docker Hub.
 - push the image with a tag name appended:
   `docker push carns/mochi-tutorial:latest`
 - log back out of docker hub with `docker logout`
+
+This directory also contains the packages.yaml that will be installed in the
+image.  This Spack configuration accomplishes three things:
+- reference as many external packages as possible from the default Ubuntu
+  package repository (to avoid excessive compilation of Mochi dependencies)
+- set MPICH as the default MPI provider
+- specify default variants for key packages like Mercury and libfabric
 
 ## Running multiple containers simultaneously
 
