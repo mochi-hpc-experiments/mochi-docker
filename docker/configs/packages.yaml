@@ -90,3 +90,7 @@ packages:
     externals:
     - spec: tclap@1.2.5
       prefix: /usr
+  libfabric:
+    variants: fabrics=tcp,rxm
+  mercury:
+    variants: ~boostsys ~checksum
