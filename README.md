@@ -35,9 +35,15 @@ container](docker/README.md) for instructions.
     - Matthieu Dorier (ANL)
     - Phil Carns (ANL)
     - Marc Vef (JGU)
-- Presentation materials: **TBD**
+- Presentation materials:
+  - **TBD**
 - Hands-on exercises:
   - C programming language: [Margo tutorial
     exercises](https://github.com/mochi-hpc-experiments/margo-tutorial-exercises)
   - C++ programming language: [Thallium tutorial
     exercises](https://github.com/mochi-hpc-experiments/thallium-tutorial-exercises)
+- Communication:
+  - Please join the [Mochi workspace on
+    Slack](https://join.slack.com/t/mochi-sds/shared_invite/zt-co8bjqua-4To3u5bAEIdYqLuWYrgcyw)
+    and use the #mochi-tutorial-isc-2023 channel for discussion and help before,
+    during, and after the tutorial.
