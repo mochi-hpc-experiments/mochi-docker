@@ -91,7 +91,6 @@ to the hands-on exercises for your tutorial.**
 ## Managing docker containers
 
 Use the following commands to stop and restart the Mochi tutorial container:
-
 ```
 docker stop mt1
 docker start mt1
@@ -102,6 +101,19 @@ Other helpful commands include:
 - `docker container ls -a # list all containers, whether running or not`
 - `docker images # list available container images`
 - `docker cp <file> mt1:<file> # copy files to the container`
+
+You can update the Mochi spack repository in the container by simply pulling
+upstream revisions from github (as in the following example):
+```
+mochi@mt1:~$ cd mochi-spack-packages
+mochi@mt1:~/mochi-spack-packages$ git fetch --all
+Fetching origin
+mochi@mt1:~/mochi-spack-packages$ git rebase origin/main
+Current branch main is up to date.
+```
+Note that this will make new Mochi packages available, but will not alter
+any existing Spack environments.  You may need to remove packages (see
+`spack uninstall --dependents <package>`) and reinstall.
 
 ## updating the mochi-tutorial image on Docker Hub
 
