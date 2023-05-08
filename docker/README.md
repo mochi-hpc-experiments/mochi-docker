@@ -84,9 +84,8 @@ docker exec -it mt1 /bin/bash
 ```
 
 **At this point, your Mochi tutorial container is ready, and you may proceed
-to the hands-on exercises for your tutorial.**
-
-**TODO: provide links**
+to the hands-on exercises for your tutorial.**  See the top-level
+README.md in this repository for links to exercises.
 
 ## Managing docker containers
 
