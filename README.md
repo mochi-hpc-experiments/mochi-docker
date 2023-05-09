@@ -37,6 +37,25 @@ container](docker/README.md) for instructions.
     - Marc Vef (JGU)
 - Presentation materials:
   - **TBD**
+- Agenda:
+  - Introduction (Phil) - 10 min
+  - Core libraries - 30 min
+    - Margo (Matthieu)
+    - Thallium (Matthieu)
+    - Argobots and Mercury (Phil)
+  - _Hands-on session 1_ - 30 min
+  - Mochi methodology (Matthieu) - 10 min
+  - _Hands-on session 2_ - 30 min
+  - Data service case study (Marc) - 10 min
+  - _Coffee break_ - 30 min
+  - Mochi components - 40 min
+    - Yokan (Matthieu)
+    - Bake (Phil)
+    - Bedrock (Matthieu)
+    - Other components (Phil)
+  - _Hands on session 3_ - 30 min
+  - Advanced features (Phil) - 10 min
+  - Conclusion (Matthieu) - 10 min
 - Hands-on exercises:
   - C programming language: [Margo tutorial
     exercises](https://github.com/mochi-hpc-experiments/margo-tutorial-exercises)
