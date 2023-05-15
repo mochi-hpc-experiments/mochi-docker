@@ -58,8 +58,8 @@ machine (if you have not already) and execute the following command to build
 a new image named "mochi-tutorial".
 
 ```
-git clone https://github.com/mochi-hpc-experiments/mochi-tutorial
-cd mochi-tutorial/docker
+git clone https://github.com/mochi-hpc-experiments/mochi-docker
+cd mochi-docker/mochi-tutorial
 docker build -t mochi-tutorial .
 ```
 
